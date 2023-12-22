@@ -212,11 +212,6 @@ class Bee:
     def go_to_food(self, food):
         self.food = food
 
-    def dance(self):
-        if self.food.quality is None:
-            quality = self.calculate_nectar(self.food)
-            self.food.quality = quality
-        return self.food, self.food.quality
 
     def calculate_nectar(self, food=None):
         if food is None:
@@ -237,6 +232,12 @@ class EmployedBee(Bee):
         new_location = single(self.food, step)
         new_food = Food(new_location)
         return new_food
+
+    def dance(self):
+        if self.food.quality is None:
+            quality = self.calculate_nectar(self.food)
+            self.food.quality = quality
+        return self.food, self.food.quality
 
 
 class Worker(EmployedBee):
